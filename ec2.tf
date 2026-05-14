@@ -1,11 +1,11 @@
-resource "aws_instance" "terraform" {
-    count = 10
+resource "aws_instance" "var.instances[count.index]" {
+    count = 4
     ami = "ami-0220d79f3f480ecf5"
     instance_type = "t2.micro"
     vpc_security_group_ids = [aws_security_group.terraform_all.id]
 
     tags ={
-        Name = "terraform"
+        Name = var.instances[count.index]
         Terraform = "true"
     }
 
